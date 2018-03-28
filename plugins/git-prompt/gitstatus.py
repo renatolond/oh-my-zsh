@@ -16,6 +16,9 @@ def get_tagname_or_hash():
     # get tagname
     tags_cmd = ['git', 'for-each-ref', '--points-at=HEAD', '--count=2', '--sort=-version:refname', '--format=%(refname:short)', 'refs/tags']
     tags = check_output(tags_cmd).split()
+    # m = re.search('tag: [^ ~:^]*[,\)]', output)
+    # if m:
+    #    tagname = 'tags/' + output[m.start()+len('tag: '): m.end()-1]
 
     if tags:
         return tags[0] + ('+' if len(tags) > 1 else '')
